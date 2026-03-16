@@ -31,9 +31,7 @@
 ## ✨ Features
 
 - 🔍 **317 YARA detection rules** covering malware families, exploits, RATs, ransomware, and more
-- 📱 **SpyNote Android RAT detection** — identifies obfuscated SpyNote samples including base64-encoded package names
 - 🗂️ **Universal file type support** — PDFs, EXE/DLL, Office documents, APKs, archives, scripts, images, and more
-- 🧬 **Deep APK analysis** — extracts permissions, dangerous capabilities, DEX strings, and device admin abuse
 - 🔐 **VirusTotal integration** — hash lookup and file upload for cross-reference
 - 📊 **Risk scoring** — 0–100 CRITICAL / HIGH / MEDIUM / LOW scoring engine
 - ⚡ **Fallback pattern scanning** — works even without `yara-python` installed
