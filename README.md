@@ -47,18 +47,18 @@
 
 ```
 ┌─────────────────────────────────────────────────────┐
-│  🛡️  Dillu Analyzer Universal Malware Scanner          │
+│  🛡️  Dillu Analyzer Universal Malware Scanner      │
 │  ─────────────────────────────────────────────────  │
-│  Drop file or click to upload                        │
-│                                                      │
-│  [  SCAN FILE  ]   VT API Key: [____________]        │
-│                                                      │
+│  Drop file or click to upload                       │
+│                                                     │
+│  [  SCAN FILE  ]   VT API Key: [____________]       │
+│                                                     │
 │  ● CRITICAL  Score: 95/100                          │
 │  ─────────────────────────────────────────────────  │
-│  YARA Matches (7):                                   │
-│    🚨 SpyNote_RAT_Android    [HIGH] RAT              │
-│    🚨 Android_RAT_Screen     [HIGH] RAT              │
-│    🚨 Android_DeviceAdmin    [HIGH] Persistence      │
+│  YARA Matches (7):                                  │
+│    🚨 SpyNote_RAT_Android    [HIGH] RAT             │
+│    🚨 Android_RAT_Screen     [HIGH] RAT             │
+│    🚨 Android_DeviceAdmin    [HIGH] Persistence     │
 │    ...                                               │
 │                                                      │
 │  APK Permissions (20 dangerous):                     │
