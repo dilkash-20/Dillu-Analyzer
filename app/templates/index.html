@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dillu Analyzer | Universal Malware Scanner</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="noise"></div>
+    <div class="scanlines"></div>
+    <div class="grid-bg"></div>
+
+    <header class="header">
+        <div class="header-inner">
+            <div class="logo">
+                <div class="logo-icon">
+                    <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+                        <path d="M14 2L25 8V20L14 26L3 20V8L14 2Z" stroke="#a855f7" stroke-width="1.5" fill="none"/>
+                        <path d="M14 6L21 10V18L14 22L7 18V10L14 6Z" fill="#a855f7" opacity="0.2"/>
+                        <circle cx="14" cy="14" r="3" fill="#a855f7"/>
+                    </svg>
+                </div>
+                <div class="logo-text">
+                    <span class="logo-name">Dillu Analyzer</span>
+                    <span class="logo-sub">UNIVERSAL MALWARE SCANNER</span>
+                </div>
+            </div>
+            <div class="header-badges">
+                <span class="badge badge-live"><span class="pulse-dot"></span>ACTIVE</span>
+                <span class="badge badge-version">v3.0.0</span>
+            </div>
+        </div>
+    </header>
+
+    <main class="main">
+        <!-- Upload Section -->
+        <section class="upload-section" id="uploadSection">
+            <div class="upload-header">
+                <h1 class="upload-title">
+                    <span class="title-line1">THREAT</span>
+                    <span class="title-line2">ANALYSIS</span>
+                </h1>
+                <p class="upload-desc">Deep forensic scanning for <strong>any file type</strong> — executables, PDFs, Office documents, archives, scripts, images and more. Powered by YARA, entropy analysis, and VirusTotal.</p>
+            </div>
+
+            <div class="vt-config">
+                <div class="vt-config-inner">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                    <span>VirusTotal API Key</span>
+                    <input type="password" id="vtApiKey" placeholder="Enter your VT API key (optional)" class="vt-input" autocomplete="off">
+                    <button class="vt-toggle" onclick="toggleVtKey()" title="Show/hide">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+                    </button>
+                </div>
+            </div>
+
+            <div class="drop-zone" id="dropZone">
+                <div class="drop-zone-content">
+                    <div class="drop-icon">
+                        <div class="drop-icon-rings">
+                            <div class="ring ring-1"></div>
+                            <div class="ring ring-2"></div>
+                            <div class="ring ring-3"></div>
+                        </div>
+                        <svg class="drop-icon-svg" width="44" height="44" viewBox="0 0 44 44" fill="none">
+                            <rect x="6" y="2" width="32" height="40" rx="3" stroke="#a855f7" stroke-width="1.5"/>
+                            <path d="M13 13h18M13 19h18M13 25h12" stroke="#a855f7" stroke-width="1.2" stroke-linecap="round" opacity="0.5"/>
+                            <path d="M22 36v-10M19 29l3-3 3 3" stroke="#e879f9" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </div>
+                    <h3 class="drop-title">DROP ANY FILE HERE</h3>
+                    <p class="drop-sub">or <button class="link-btn" onclick="document.getElementById('fileInput').click()">browse files</button></p>
+                    <div class="drop-constraints">
+                        <span id="supportedTypesHint">EXE · PDF · DOCX · ZIP · PS1 · PY · JPG · and more</span>
+                        <span class="dot-sep">·</span>
+                        <span>Max 100MB</span>
+                    </div>
+                </div>
+                <input type="file" id="fileInput" style="display:none">
+            </div>
+
+            <div class="modules-grid">
+                <div class="module-card"><div class="module-icon">⚡</div><div class="module-info"><div class="module-name">YARA Engine</div><div class="module-desc">30+ universal rules</div></div></div>
+                <div class="module-card"><div class="module-icon">🔩</div><div class="module-info"><div class="module-name">PE Analyzer</div><div class="module-desc">Sections, imports, packers</div></div></div>
+                <div class="module-card"><div class="module-icon">📝</div><div class="module-info"><div class="module-name">Office / Macro</div><div class="module-desc">VBA, DDE, OOXML</div></div></div>
+                <div class="module-card"><div class="module-icon">📦</div><div class="module-info"><div class="module-name">Archive Inspector</div><div class="module-desc">ZIP bombs, payloads</div></div></div>
+                <div class="module-card"><div class="module-icon">🖥️</div><div class="module-info"><div class="module-name">Script Analyzer</div><div class="module-desc">PS1, Python, Bash, VBS</div></div></div>
+                <div class="module-card"><div class="module-icon">🖼️</div><div class="module-info"><div class="module-name">Stego Detector</div><div class="module-desc">Hidden payloads in images</div></div></div>
+                <div class="module-card"><div class="module-icon">🔬</div><div class="module-info"><div class="module-name">Entropy Analysis</div><div class="module-desc">Packing / encryption</div></div></div>
+                <div class="module-card"><div class="module-icon">🌐</div><div class="module-info"><div class="module-name">VirusTotal</div><div class="module-desc">70+ AV engines</div></div></div>
+            </div>
+        </section>
+
+        <!-- Progress -->
+        <section class="progress-section hidden" id="progressSection">
+            <div class="progress-card">
+                <div class="progress-header">
+                    <div class="scan-animation"><div class="scan-beam"></div>
+                        <svg width="60" height="60" viewBox="0 0 60 60" fill="none">
+                            <rect x="10" y="6" width="40" height="52" rx="3" stroke="#a855f7" stroke-width="1.5"/>
+                            <path d="M18 18h24M18 24h24M18 30h16" stroke="#a855f7" stroke-width="1.2" stroke-linecap="round" opacity="0.5"/>
+                        </svg>
+                    </div>
+                    <div class="progress-info">
+                        <h2 class="progress-title">SCANNING IN PROGRESS</h2>
+                        <p class="progress-file" id="progressFile">Analyzing file...</p>
+                    </div>
+                </div>
+                <div class="scan-steps" id="scanSteps">
+                    <div class="step" id="step-upload"><div class="step-icon step-waiting">○</div><div class="step-label">Upload &amp; File Type Detection</div></div>
+                    <div class="step" id="step-hash"><div class="step-icon step-waiting">○</div><div class="step-label">Hash Computation &amp; Entropy Analysis</div></div>
+                    <div class="step" id="step-yara"><div class="step-icon step-waiting">○</div><div class="step-label">YARA Rule Matching</div></div>
+                    <div class="step" id="step-deep"><div class="step-icon step-waiting">○</div><div class="step-label">Deep Type-Specific Analysis</div></div>
+                    <div class="step" id="step-strings"><div class="step-icon step-waiting">○</div><div class="step-label">String Extraction &amp; IOC Detection</div></div>
+                    <div class="step" id="step-vt"><div class="step-icon step-waiting">○</div><div class="step-label">VirusTotal Cross-Reference</div></div>
+                </div>
+                <div class="progress-bar-wrap"><div class="progress-bar" id="progressBar"></div></div>
+                <p class="progress-pct" id="progressPct">0%</p>
+            </div>
+        </section>
+
+        <!-- Results -->
+        <section class="results-section hidden" id="resultsSection">
+            <div class="results-topbar">
+                <button class="back-btn" onclick="resetScanner()">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+                    New Scan
+                </button>
+                <div class="topbar-actions">
+                    <button class="action-btn" onclick="downloadReport()">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7,10 12,15 17,10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                        Download Report
+                    </button>
+                </div>
+            </div>
+
+            <div class="risk-summary" id="riskSummary">
+                <div class="risk-left">
+                    <div class="risk-gauge-wrap">
+                        <svg class="risk-gauge" viewBox="0 0 200 120" width="200" height="120">
+                            <defs><linearGradient id="gaugeGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+                                <stop offset="0%" style="stop-color:#30d158"/><stop offset="40%" style="stop-color:#ffd60a"/>
+                                <stop offset="70%" style="stop-color:#ff6b35"/><stop offset="100%" style="stop-color:#ff2d55"/>
+                            </linearGradient></defs>
+                            <path d="M 20 100 A 80 80 0 0 1 180 100" fill="none" stroke="#1e1b2e" stroke-width="16" stroke-linecap="round"/>
+                            <path id="gaugeFill" d="M 20 100 A 80 80 0 0 1 180 100" fill="none" stroke="url(#gaugeGrad)" stroke-width="16" stroke-linecap="round" stroke-dasharray="0 251"/>
+                            <line id="gaugeNeedle" x1="100" y1="100" x2="100" y2="28" stroke="#ffffff" stroke-width="2" stroke-linecap="round" transform="rotate(-90, 100, 100)"/>
+                            <circle cx="100" cy="100" r="6" fill="#ffffff"/>
+                        </svg>
+                        <div class="risk-score-display" id="riskScoreDisplay">0</div>
+                    </div>
+                </div>
+                <div class="risk-right">
+                    <div class="risk-level-badge" id="riskLevelBadge">LOADING</div>
+                    <h2 class="risk-title">THREAT ASSESSMENT</h2>
+                    <p class="risk-desc" id="riskDesc">Analyzing...</p>
+                    <div class="risk-stats" id="riskStats"></div>
+                </div>
+            </div>
+
+            <div class="result-grid">
+                <div class="result-card" id="cardFileInfo">
+                    <div class="card-header"><span class="card-icon">📄</span><h3 class="card-title">FILE INFORMATION</h3><span class="card-badge" id="badgeFileInfo">—</span></div>
+                    <div class="card-body" id="bodyFileInfo"><div class="loading-placeholder">Loading...</div></div>
+                </div>
+                <div class="result-card" id="cardYara">
+                    <div class="card-header"><span class="card-icon">⚡</span><h3 class="card-title">YARA SIGNATURES</h3><span class="card-badge" id="badgeYara">—</span></div>
+                    <div class="card-body" id="bodyYara"><div class="loading-placeholder">Loading...</div></div>
+                </div>
+                <div class="result-card card-wide" id="cardTypeAnalysis">
+                    <div class="card-header"><span class="card-icon" id="typeAnalysisIcon">🔬</span><h3 class="card-title" id="typeAnalysisTitle">DEEP ANALYSIS</h3><span class="card-badge" id="badgeTypeAnalysis">—</span></div>
+                    <div class="card-body" id="bodyTypeAnalysis"><div class="loading-placeholder">Loading...</div></div>
+                </div>
+                <div class="result-card" id="cardGeneric">
+                    <div class="card-header"><span class="card-icon">🔍</span><h3 class="card-title">STRINGS &amp; IOCs</h3><span class="card-badge" id="badgeGeneric">—</span></div>
+                    <div class="card-body" id="bodyGeneric"><div class="loading-placeholder">Loading...</div></div>
+                </div>
+                <div class="result-card card-wide" id="cardVt">
+                    <div class="card-header"><span class="card-icon">🌐</span><h3 class="card-title">VIRUSTOTAL RESULTS</h3><span class="card-badge" id="badgeVt">—</span></div>
+                    <div class="card-body" id="bodyVt"><div class="loading-placeholder">Loading...</div></div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <span>Dillu Analyzer - The Universal Scanner</span>
+        <span class="footer-sep">·</span>
+        <span>All analysis performed locally</span>
+        <span class="footer-sep">·</span>
+        <span>Files auto-deleted after 1 hour</span>
+    </footer>
+
+    <script src="{{ url_for('static', filename='js/scanner.js') }}"></script>
+</body>
+</html>
