@@ -14,7 +14,7 @@
 
 **A powerful, web-based malware scanner that detects threats across every major file type — built with Python, Flask, and 317 YARA rules.**
 
-[Features](#-features) • [Demo](#-screenshots) • [Installation](#-installation) • [Usage](#-usage) • [File Types](#-supported-file-types) • [YARA Rules](#-yara-rules)
+[Features](#-features) • [Demo](https://youtu.be/aN0mgFEg8aI) • [Installation](#-installation) • [Usage](#-usage) • [File Types](#-supported-file-types) • [YARA Rules](#-yara-rules)
 
 </div>
 
